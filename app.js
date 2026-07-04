@@ -1,12 +1,12 @@
 import express from 'express';
-
+import authRouter from './routes/auth.routes.js';
 import {PORT as ENV_PORT} from './config/env.js'
 import connectToDB from './Database/mongodb.js';
 
 const app=express();
 
 app.use(express.json());
-
+app.use('/api/v1/auth', authRouter);
 
 app.get('/',(req,res) => {
     res.send('Welcome to your movie watch list!')
