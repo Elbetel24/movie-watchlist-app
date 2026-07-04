@@ -1,0 +1,42 @@
+import express from 'express';
+
+import {PORT as ENV_PORT} from './config/env.js'
+import connectToDB from './Database/mongodb.js';
+
+const app=express();
+
+app.use(express.json());
+
+
+app.get('/',(req,res) => {
+    res.send('Welcome to your movie watch list!')
+});
+
+
+
+const startServer= async () => {
+    try {
+        await connectToDB();
+        const server=app.listen(ENV_PORT, '0.0.0.0', () => {
+            console.log(`Movie list API is running on http://localhost:${ENV_PORT}`);
+            
+        });
+
+        server.on('error', (error) => {
+            if(error.code === 'EADDRINUSE'){
+                console.error(`Port ${ENV_PORT} is already in use.Use another one!`);
+            } else {
+                console.error('Failed to start the server:',error.message);
+            }
+            process.exit(1);
+        });
+    } catch(error){
+        console.error('Failed to start the server:', error.message);
+        process.exit(1);
+    }
+};
+
+
+startServer();
+
+export default app;
