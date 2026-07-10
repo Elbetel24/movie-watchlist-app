@@ -2,9 +2,16 @@ import express from 'express';
 import authRouter from './routes/auth.routes.js';
 import {PORT as ENV_PORT} from './config/env.js'
 import connectToDB from './Database/mongodb.js';
-
+import cors from 'cors'
 const app=express();
 
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use('/api/v1/auth', authRouter);
 

@@ -86,6 +86,7 @@ function Login(){
 
         <button
           type="submit"
+          onClick={()=>navigate("/Dashboard")}
           style={{
             width: "100%",
             padding: "10px",
