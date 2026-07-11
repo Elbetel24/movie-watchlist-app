@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signUpUser } from "../services/auth";
-
+import "./Auth.css"
 function Signup() {
   const navigate = useNavigate();
 
@@ -42,118 +42,53 @@ function Signup() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#f4f4f4",
-      }}
-    >
-      <form
-        onSubmit={handleSignup}
-        style={{
-          background: "white",
-          padding: "30px",
-          borderRadius: "10px",
-          width: "350px",
-          boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-        }}
-      >
-        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
-          Sign Up
-        </h1>
-
-        {error && (
-          <p
-            style={{
-              color: "red",
-              textAlign: "center",
-              marginBottom: "15px",
-            }}
-          >
-            {error}
-          </p>
-        )}
-
-        <div style={{ marginBottom: "15px" }}>
-          <label>Name</label>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginTop: "5px",
-              boxSizing: "border-box",
-            }}
-          />
+    <div className="auth-page">
+      <div className="auth-card">
+         <div className="auth-sprockets bottom">
+          {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
         </div>
+        <form className="auth-body" onSubmit={handleSignup}>
+          <div className="auth-eyebrow">Movie TBR</div>
+          <div className="auth-title"> Reel List</div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginTop: "5px",
-              boxSizing: "border-box",
-            }}
-          />
-        </div>
+           <label className="auth-label" htmlFor="name">Name</label>
+        <input 
+        id="name"
+        className="auth-input"
+        type="text"
+        placeholder="John Doe"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+        />
+          <label className="auth-label" htmlFor="Email">Email</label>
+        <input 
+        id="email"
+        className="auth-input"
+        type="email"
+        placeholder="name@example.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        />
 
-        <div style={{ marginBottom: "20px" }}>
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginTop: "5px",
-              boxSizing: "border-box",
-            }}
-          />
-        </div>
+        <label className="auth-label" htmlFor="password">Password</label>
+        <input 
+        id="password"
+        className="auth-input"
+        type="password"
+        placeholder="••••••••"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        />
 
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            width: "100%",
-            padding: "10px",
-            background: loading ? "#6b7280" : "#2563eb",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: loading ? "not-allowed" : "pointer",
-          }}
-        >
-          {loading ? "Signing Up..." : "Sign Up"}
-        </button>
-
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: "20px",
-          }}
-        >
-          Already have an account?{" "}
-          <button
+         {error && <p className="auth-error">{error}</p>}
+        <p className="auth-footer">
+            Already have an account?
+             <button
             type="button"
-            onClick={() => navigate("/Login")}
+            onClick={() => navigate("/")}
             style={{
               background: "none",
               border: "none",
@@ -161,14 +96,15 @@ function Signup() {
               cursor: "pointer",
               textDecoration: "underline",
               padding: 0,
-            }}
-          >
-            Log In
-          </button>
-        </p>
-      </form>
+            }}>Log in</button>
+          </p>
+        </form>
+         <div className="auth-sprockets bottom">
+          {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
 export default Signup;

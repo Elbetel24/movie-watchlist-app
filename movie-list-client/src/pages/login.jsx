@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import { loginUser } from "../services/auth";
-
+import './Auth.css'
 function Login(){
 
 
@@ -19,7 +19,7 @@ function Login(){
                 localStorage.setItem("token",response.data.token);
             }
             
-
+    navigate("/Dashboard");
         }catch(err){
             const message= err.response?.data?.message || err.response?.data || err.message;
             console.log("LOGIN ERROR: ", message);
@@ -28,78 +28,45 @@ function Login(){
     };
 
 
-    return  (
-        < div 
-        style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems : "center",
-            height: "100vh",
-            backgroundColor: "beige",
-         }}
-        >
-        <form 
-        onSubmit={handleLogin}
-        style={{
-            background: "cbeige",
-            padding: "30px",
-            borderRadius: "35px",
-            borderBlockColor: "black",
-            boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-        }}
-        >
-            <h1 style={{
-                textAlign: "center",
-                font: "Cambria",
-                color:"black",
-              
-            }}>Login</h1>
-         <div style={{ marginBottom: "15px" }}>
-          <label>Email</label>
+    return (
+    <div className="auth-page">
+      <div className="auth-card">
+        <div className="auth-sprockets top">
+          {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
+        </div>
+
+        <form className="auth-body" onSubmit={handleLogin}>
+          <div className="auth-eyebrow">Movie TBR</div>
+          <div className="auth-title">Reel List</div>
+
+          <label className="auth-label" htmlFor="email">Email</label>
           <input
+            id="email"
+            className="auth-input"
             type="email"
-            placeholder="Enter your email"
+            placeholder="name@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginTop: "5px",
-            }}
+            required
           />
-        </div>
 
-        <div style={{ marginBottom: "20px" }}>
-          <label>Password</label>
+          <label className="auth-label" htmlFor="password">Password</label>
           <input
+            id="password"
+            className="auth-input"
             type="password"
-            placeholder="Enter your password"
+            placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginTop: "5px",
-            }}
+            required
           />
-        </div>
 
-        <button
-          type="submit"
-          onClick={()=>navigate("/Dashboard")}
-          style={{
-            width: "100%",
-            padding: "10px",
-            background: "#2563eb",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-        <h3>Don't have an account?<button
+          {error && <p className="auth-error">{error}</p>}
+
+          <button className="auth-submit" type="submit">Sign in</button>
+
+          <p className="auth-footer">
+            New here?  <button
             type="button"
             onClick={() => navigate("/Signup")}
             style={{
@@ -109,14 +76,16 @@ function Login(){
               cursor: "pointer",
               textDecoration: "underline",
               padding: 0,
-            }}
-          >
-            Sign up
-          </button></h3>   
-
+            }}>Create an Account?</button>
+          </p>
         </form>
+
+        <div className="auth-sprockets bottom">
+          {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Login;

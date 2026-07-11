@@ -2,6 +2,7 @@ import express from 'express';
 import authRouter from './routes/auth.routes.js';
 import {PORT as ENV_PORT} from './config/env.js'
 import connectToDB from './Database/mongodb.js';
+import errorMiddleware from './middleware/error.middleware.js';
 import cors from 'cors'
 const app=express();
 
@@ -19,6 +20,7 @@ app.get('/',(req,res) => {
     res.send('Welcome to your movie watch list!')
 });
 
+app.use(errorMiddleware);
 
 
 const startServer= async () => {
