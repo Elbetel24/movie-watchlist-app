@@ -132,3 +132,24 @@
 .auth-footer a:hover {
   text-decoration: underline;
 }
+
+
+.Dashboard{
+  background-color: #0b0d12;
+  color: white;
+  font-family: 'Cambria';
+}
+.NavBar {
+ color: #e8b04b;
+ text-decoration:none;
+
+
+
+}
+
+.nav-button{
+  border: none;
+  background-color: transparent;
+
+}
+

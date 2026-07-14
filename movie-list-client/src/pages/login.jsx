@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import { loginUser } from "../services/auth";
 import './Auth.css'
+import { validateEmail, validatePassword } from "../utils/validation.js"
 function Login(){
 
 
@@ -9,9 +10,21 @@ function Login(){
     const [email, setEmail]= useState("");
     const [ password, setPassword]= useState("");
     const [ error, setError]= useState("");
+    const [errors, setErrors]= useState({});
 
+
+    const validate = () => {
+    const newErrors = {
+      email: validateEmail(email),
+      password: validatePassword(password),
+    };
+    setErrors(newErrors);
+    // Valid only if every field returned an empty string
+    return Object.values(newErrors).every((err) => err === '');
+  };
     const handleLogin= async (e) => {
         e.preventDefault();
+        if(validate()){
         try {
             const response= await loginUser( email, password);
             console.log("LOGIN SUCCESS:" , response);
@@ -26,7 +39,7 @@ function Login(){
             setError(message);
         }
     };
-
+  }
 
     return (
     <div className="auth-page">
@@ -61,7 +74,7 @@ function Login(){
             required
           />
 
-          {error && <p className="auth-error">{error}</p>}
+          {errors && <p className="auth-error">{error}</p>}
 
           <button className="auth-submit" type="submit">Sign in</button>
 
