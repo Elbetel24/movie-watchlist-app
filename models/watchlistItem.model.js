@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const watchlistSchema= new mongoose.Schema({
+const watchlistItemSchema= new mongoose.Schema({
  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

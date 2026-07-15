@@ -134,22 +134,22 @@
 }
 
 
-.Dashboard{
-  background-color: #0b0d12;
-  color: white;
-  font-family: 'Cambria';
-}
-.NavBar {
- color: #e8b04b;
- text-decoration:none;
-
-
+.dashboard {
+  background-color: black;
+  min-height:3px;
+  padding:6px 8px;
 
 }
 
-.nav-button{
-  border: none;
-  background-color: transparent;
 
+.dashboardtitle {
+    font-size: 2em ;
+    font-weight: bold;
+    
 }
 
+.navbar {
+ font:bold;
+ font-family: 'Cambria';
+ color:rgb(197, 151, 12);
+}
