@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Elbetel24/movie-watchlist-app#readme",
   "dependencies": {
+    "axios": "^1.18.1",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",

@@ -1,4 +1,5 @@
 import express from 'express';
+import moviesRouter from './routes/movies.routes.js';
 import authRouter from './routes/auth.routes.js';
 import {PORT as ENV_PORT} from './config/env.js'
 import connectToDB from './Database/mongodb.js';
@@ -13,8 +14,10 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/movies',moviesRouter);
 
 app.get('/',(req,res) => {
     res.send('Welcome to your movie watch list!')
