@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getPopularMovies, searchMovies } from '../services/movie.service';
 import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
@@ -9,20 +10,22 @@ export default function Dashboard() {
   const [mode, setMode] = useState('popular'); // 'popular' | 'search'
 
   useEffect(() => {
-    if (mode === 'popular') loadPopular();
-  }, [mode]);
+    if (mode !== 'popular') return;
 
-  const loadPopular = async () => {
-    setLoading(true);
-    try {
-      const data = await getPopularMovies();
-      setMovies(data.results || []);
-    } catch (err) {
-      console.error(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const fetchPopular = async () => {
+      setLoading(true);
+      try {
+        const data = await getPopularMovies();
+        setMovies(data.results || []);
+      } catch (err) {
+        console.error(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPopular();
+  }, [mode]);
 
   const handleSearch = async (query) => {
     setLoading(true);
@@ -45,9 +48,9 @@ export default function Dashboard() {
                     {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
                 </div>
             <h1 className="dashboardtitle">
-              <a href="movie-list-client\src\components\MovieList.jsx"> WatchList </a>
-              <a href="movie-list-client\src\pages\login.jsx"> Log out</a>
-        {mode === 'popular' ? 'Popular Movies' : 'Search Results'}
+            <Link to="/WatchedList">Watched List</Link>
+            <Link to="/WatchListPage">Watch List</Link>
+            {mode === 'popular' ? 'Popular Movies' : 'Search Results'}
       </h1>
 
         </nav>
