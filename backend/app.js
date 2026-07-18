@@ -10,7 +10,7 @@ const app=express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://movie-watchlist-36igxhhgx-elbetel24s-projects.vercel.app",
+ " https://movie-watchlist-tmdb.vercel.app/",
 ];
 
 app.use(
