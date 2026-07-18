@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "https://movie-watchlist-app-u2fw.onrender.com/",
   withCredentials: true, // important if you're using cookies later
 
 });
