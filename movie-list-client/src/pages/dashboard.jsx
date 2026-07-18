@@ -45,6 +45,8 @@ export default function Dashboard() {
                     {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
                 </div>
             <h1 className="dashboardtitle">
+              <a href="movie-list-client\src\components\MovieList.jsx"> WatchList </a>
+              <a href="movie-list-client\src\pages\login.jsx"> Log out</a>
         {mode === 'popular' ? 'Popular Movies' : 'Search Results'}
       </h1>
 
