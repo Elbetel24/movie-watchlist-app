@@ -37,7 +37,7 @@ function Login() {
                 localStorage.setItem("token", response.data.token);
             }
 
-            navigate("/Dashboard");
+            navigate("/dashboard");
         } catch (err) {
             const rawMessage = err.response?.data?.message || err.response?.data || err.message;
             const message = typeof rawMessage === "string" ? rawMessage : "Login failed. Please try again.";

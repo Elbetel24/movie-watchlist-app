@@ -40,7 +40,7 @@ function Signup() {
           localStorage.setItem("token", response.data.token);
         }
 
-        navigate("/Dashboard");
+        navigate("/dashboard");
       } catch (err) {
         const message =
           err.response?.data?.message ||
