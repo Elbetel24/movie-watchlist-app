@@ -48,8 +48,9 @@ export default function Dashboard() {
                     {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
                 </div>
             <h1 className="dashboardtitle">
-            <Link to="/WatchedList">Watched List</Link>
-            <Link to="/WatchListPage">Watch List</Link>
+            <Link to="/WatchedList">Watched List  </Link>
+            <Link to="/WatchListPage">Watch List  </Link>
+            <br></br>
             {mode === 'popular' ? 'Popular Movies' : 'Search Results'}
       </h1>
 

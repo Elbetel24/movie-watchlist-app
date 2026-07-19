@@ -3,11 +3,19 @@ import { addToList } from '../services/watchlist.service';
 const IMG_BASE = 'https://image.tmdb.org/t/p/w342';
 
 export default function MovieCard({ movie }) {
+
+  const  [ status , setStatus ]= useState(null);
+  const [  loading, setLoading ]= useState(false);
+
   const handleAdd = async (status) => {
+    setLoading(true);
     try {
       await addToList(movie, status);
+      setStatus(status);
     } catch (err) {
       console.error(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -23,16 +31,27 @@ export default function MovieCard({ movie }) {
         <div className="flex gap-2">
           <button
             onClick={() => handleAdd('watchlist')}
-            className="flex-1 text-xs py-1 rounded bg-amber-500 text-black hover:bg-amber-400"
+            disabled={loading}
+            className={`flex-1 text-xs py-1 rounded transition ${
+              status === 'watchlist'
+                ? 'bg-amber-300 text-black'
+                : 'bg-amber-500 text-black hover:bg-amber-400'
+            } disabled:opacity-50`}
           >
-            + Watchlist
+            {status === 'watchlist' ? '✓ In Watchlist' : '+ Watchlist'}
           </button>
-          <button
+                    <button
             onClick={() => handleAdd('watched')}
-            className="flex-1 text-xs py-1 rounded border border-amber-500 text-amber-500 hover:bg-amber-500/10"
+            disabled={loading}
+            className={`flex-1 text-xs py-1 rounded border transition ${
+              status === 'watched'
+                ? 'bg-amber-500/20 border-amber-500 text-amber-400'
+                : 'border-amber-500 text-amber-500 hover:bg-amber-500/10'
+            } disabled:opacity-50`}
           >
-            Watched
+            {status === 'watched' ? '✓ Watched' : 'Watched'}
           </button>
+
         </div>
       </div>
     </div>

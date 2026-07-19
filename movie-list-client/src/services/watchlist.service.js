@@ -1,15 +1,17 @@
-import api from './api';
+// services/watchlist.service.js
+import axios from 'axios';
 
-export const addToList = (movie, status) =>
-  api.post('/watchlist', {
-    movieId: movie.id,
-    title: movie.title,
-    posterPath: movie.poster_path,
-    status
-  }).then(res => res.data);
-
-export const removeFromList = (movieId) =>
-  api.delete(`/watchlist/${movieId}`);
-
-export const getMyList = (status) =>
-  api.get('/watchlist', { params: status ? { status } : {} }).then(res => res.data);
+export const addToList = async (movie, status) => {
+  const token = localStorage.getItem('token');
+  const res = await axios.post(
+    '/api/watchlist',
+    {
+      movieId: movie.id,
+      title: movie.title,
+      posterPath: movie.poster_path,
+      status
+    },
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+  return res.data;
+};
