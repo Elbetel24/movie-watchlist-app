@@ -1,17 +1,19 @@
-// services/watchlist.service.js
-import axios from 'axios';
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
-export const addToList = async (movie, status) => {
-  const token = localStorage.getItem('token');
-  const res = await axios.post(
-    '/api/watchlist',
-    {
-      movieId: movie.id,
-      title: movie.title,
-      posterPath: movie.poster_path,
-      status
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+  server: {
+    proxy: {
+      '/api': {
+        target: ' import.meta.env.VITE_API_URL', // <-- change to whatever port your Express server runs on
+        changeOrigin: true,
+      },
     },
-    { headers: { Authorization: `Bearer ${token}` } }
-  );
-  return res.data;
-};
+  },
+})
