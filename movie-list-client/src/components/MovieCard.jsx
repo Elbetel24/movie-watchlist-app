@@ -1,5 +1,5 @@
 import { addToList } from '../services/watchlist.service';
-
+import { useState } from 'react';
 const IMG_BASE = 'https://image.tmdb.org/t/p/w342';
 
 export default function MovieCard({ movie }) {
