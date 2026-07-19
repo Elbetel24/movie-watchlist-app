@@ -1,4 +1,4 @@
-import  addToList  from '../services/watchlist.service';
+import  watchlistService  from '../services/watchlist.service';
 import { useState } from 'react';
 const IMG_BASE = 'https://image.tmdb.org/t/p/w342';
 
@@ -10,7 +10,7 @@ export default function MovieCard({ movie }) {
   const handleAdd = async (status) => {
     setLoading(true);
     try {
-      await addToList(movie, status);
+      await watchlistService.addToList(movie, status);
       setStatus(status);
     } catch (err) {
       console.error(err.message);
