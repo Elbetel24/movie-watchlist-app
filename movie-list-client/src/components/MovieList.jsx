@@ -1,5 +1,5 @@
-import { useState, useeffect} from 'react';
-import axios from 'axios';
+import { useState, useEffect} from 'react';
+import getWatchlist from '../services/watchlist.service.js';
 
 function MovieList({status}) {
 
@@ -8,26 +8,21 @@ function MovieList({status}) {
     const [ loading, setLoading]= useState(true);
     const [ error, setError ]=useState(null);
 
-    useEffect(() => {
-        const fetchItems= async () => {
+   useEffect(() => {
+    const fetchItems = async () => {
         setLoading(true);
         setError(null);
         try {
-            const token= localStorage.getItemI('token');
-            const res= await  axios.get('api/v1/watchlist', {
-                params : { status },
-                headers :{ Authorization: `Bearer ${token}`}
-         });
-         setItems(res.data);
-        } catch(err){
+            const res = await getWatchlist(status);
+            setItems(res); // see note below
+        } catch (error) {
             setError(`Could not load ${status}`);
         } finally {
             setLoading(false);
-       }   
+        }
     };
     fetchItems();
 }, [status]);
-
 
  if (loading ) return <p> Loading ...</p>
  if (error ) return <p>{error}</p>
