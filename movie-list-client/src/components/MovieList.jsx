@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react';
-import getWatchlist from '../services/watchlist.service.js';
+import watchlistService from '../services/watchlist.service.js';
 
 function MovieList({status}) {
 
@@ -13,8 +13,8 @@ function MovieList({status}) {
         setLoading(true);
         setError(null);
         try {
-            const res = await getWatchlist(status);
-            setItems(res); // see note below
+            const res = await watchlistService.getWatchlist(status);
+            setItems(res); 
         } catch (error) {
             setError(`Could not load ${status}`);
         } finally {
