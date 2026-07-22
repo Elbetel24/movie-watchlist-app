@@ -5,6 +5,7 @@ import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
 import Recommendations from '../components/Recommendations';
 import './Auth.css'
+
 export default function Dashboard() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,31 +43,28 @@ export default function Dashboard() {
   };
 
   return (
-
     <div className="min-h-screen bg-black px-6 py-8">
-        <nav className="navbar">
-            <div className="auth-sprockets top">
-                    {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
-                </div>
-            <h1 className="dashboardtitle">
-            <Link to="/WatchedList">Watched List  </Link>
-            <Link to="/WatchListPage">Watch List  </Link>
-            <br></br>
-            {mode === 'popular' ? 'Popular Movies' : 'Search Results'}
-      </h1>
+      <nav className="navbar">
+        <div className="auth-sprockets top">
+          {Array.from({ length: 5 }).map((_, i) => <span key={i} />)}
+        </div>
+        <h1 className="dashboardtitle">
+          <Link to="/WatchedList">Watched List  </Link>
+          <Link to="/WatchListPage">Watch List  </Link>
+          <br />
+          {mode === 'popular' ? 'Popular Movies' : 'Search Results'}
+        </h1>
+      </nav>
 
-        </nav>
-      
       <SearchBar onSearch={handleSearch} />
+
       <section className="mt-8">
         <h2 className="text-xl font-semibold text-neutral-100 mb-4">
           Recommended For You
         </h2>
         <Recommendations />
       </section>
-    </div>
-  );
-}
+
       {mode === 'search' && (
         <button
           onClick={() => setMode('popular')}

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getMovieFeatures, discoverByGenres } from '../controllers/tmdb.controller.js';
+import { getMovieFeatures, discoverByGenres } from '../controller/tmdb.controller.js';
 
 const tmdbRouter=express.Router();
 
