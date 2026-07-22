@@ -1,5 +1,5 @@
 // src/components/Recommendations.jsx
-import { useRecommendations } from '../hooks/useRecommendations';
+import { useRecommendations } from '../hooks/useRecommendation.js';
 import MovieCard from './MovieCard';
 
 export default function Recommendations() {
