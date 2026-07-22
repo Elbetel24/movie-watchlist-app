@@ -4,6 +4,7 @@ import Signup from "./pages/signup"
 import Dashboard from "./pages/dashboard"
 import WatchListPage from "./pages/WatchListPage";
 import WatchedList from "./pages/WatchedList";
+import { Analytics } from "@vercel/analytics/next"
 function App(){
   return (
     <BrowserRouter>
