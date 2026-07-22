@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getPopularMovies, searchMovies } from '../services/movie.service';
 import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
+import Recommendations from '../components/Recommendations';
 import './Auth.css'
 export default function Dashboard() {
   const [movies, setMovies] = useState([]);
@@ -57,7 +58,15 @@ export default function Dashboard() {
         </nav>
       
       <SearchBar onSearch={handleSearch} />
-
+      <section className="mt-8">
+        <h2 className="text-xl font-semibold text-neutral-100 mb-4">
+          Recommended For You
+        </h2>
+        <Recommendations />
+      </section>
+    </div>
+  );
+}
       {mode === 'search' && (
         <button
           onClick={() => setMode('popular')}

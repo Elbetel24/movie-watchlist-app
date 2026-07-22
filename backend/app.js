@@ -6,6 +6,7 @@ import {PORT as ENV_PORT} from './config/env.js'
 import connectToDB from './Database/mongodb.js';
 import errorMiddleware from './middleware/error.middleware.js';
 import cors from 'cors'
+import tmdbRouter from './routes/tmdb.routes.js';
 const app=express();
 
 const allowedOrigins = [
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/movies',moviesRouter);
 app.use('/api/v1/watchlist',watchlistRouter);
+app.use('/api/v1/tmdb', tmdbRouter);
 app.get('/',(req,res) => {
     res.send('Welcome to your movie watch list!')
 });
